@@ -10,6 +10,21 @@ app = Flask(__name__)
 def home():
     return "Smart Mining Digital Twin API Running 🚀"
 
+@app.route("/data")
+def data():
+    sequence = generate_sequence(50)
+    latest = sequence.iloc[-1]
+
+    return jsonify({
+        "machine_id": "EXCAVATOR_01",
+        "timestamp": str(pd.Timestamp.now()),
+        "data": {
+            "temperature": float(latest["temperature"]),
+            "vibration": float(latest["vibration"]),
+            "load": float(latest["load"]),
+            "pressure": float(latest["pressure"])
+        }
+    })
 
 @app.route("/predict")
 def predict_api():
