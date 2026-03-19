@@ -2,7 +2,7 @@ import numpy as np
 import pickle
 from tensorflow.keras.models import load_model
 
-model = load_model("models/lstm_model.h5", compile=False)
+model = load_model("models/lstm_model.h5", compile=False, safe_mode=False)
 
 with open("models/scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
