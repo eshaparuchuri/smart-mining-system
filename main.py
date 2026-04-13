@@ -5,6 +5,9 @@ import numpy as np
 from alerts.alert import check_alert
 from pydantic import BaseModel
 
+model = load_model("models/lstm_model.h5")
+scaler = joblib.load("models/scaler.pkl")
+
 app = FastAPI()
 
 # ✅ Load ML model

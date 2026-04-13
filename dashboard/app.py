@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 import time
+import webbrowser
 
 st.set_page_config(page_title="Smart Mining Digital Twin", layout="wide")
 
@@ -28,7 +29,7 @@ st.markdown("""
 # SIDEBAR
 # -----------------------------
 st.sidebar.title("🏭 Digital Twin System")
-page = st.sidebar.radio("Navigation", ["📊 Overview", "🏭 Machine", "🚨 Alerts"])
+page = st.sidebar.radio("Navigation", ["📊 Overview", "🏭 Machine", "🚨 Alerts", "📈 Dashboard",])
 
 # -----------------------------
 # SESSION STATE
@@ -141,10 +142,16 @@ elif page == "🏭 Machine":
 
     # 🔹 HISTORY
     df = pd.DataFrame(st.session_state.history[machine_id])
+    df["timestamp"] = pd.to_datetime(df["timestamp"])
+    df = df.set_index("timestamp")
 
-    if not df.empty:
-        st.subheader("📈 Past Trend")
-        st.line_chart(df[["temperature", "vibration", "load", "pressure"]])
+    st.metric("Current Temperature", f"{values['temperature']:.2f}")
+    st.subheader("⚡ Live Trend (Real-Time)")
+    live_df = df.tail(20)  # last 20 points = live window
+    st.line_chart(live_df[["temperature", "vibration", "load", "pressure"]])
+
+    st.subheader("📈 Full History")
+    st.line_chart(df[["temperature", "vibration", "load", "pressure"]])
 
     # 🔮 FORECAST
     if forecast:
@@ -167,7 +174,21 @@ elif page == "🚨 Alerts":
         st.success("No alerts")
 
 # -----------------------------
+# 📈 DASHBOARD
+# -----------------------------
+elif page == "📈 Dashboard":
+
+    st.title("📈 Dashboard")
+
+    st.link_button(
+    "🌐 Open Live ThingsBoard Dashboard",
+    "https://thingsboard.cloud/dashboard/0a48ba70-238f-11f1-93d4-a32bb61f9d35?publicId=1d115170-333a-11f1-b174-255c03e1b993"
+)
+
+
+# -----------------------------
 # AUTO REFRESH
 # -----------------------------
-time.sleep(2)
+time.sleep(1.5)
 st.rerun()
+

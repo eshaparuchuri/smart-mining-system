@@ -19,6 +19,6 @@ model.fit(X)
 os.makedirs("model", exist_ok=True)
 
 # Save model in correct path
-joblib.dump(model, "model/anomaly_model.pkl")
+joblib.dump(model, "models/anomaly_model.pkl")
 
 print("✅ Model trained and saved!")
