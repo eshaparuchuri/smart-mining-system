@@ -46,7 +46,7 @@ This project also reflects strong problem-solving and system design capabilities
  ##How to Run the Project
 
 1. Clone the repository:
-   git clone https://github.com/YOUR_USERNAME/smart-mining-digital-twin.git
+   git clone https://https://github.com/eshaparuchuri/smart-mining-system
 
 2. Navigate into the project folder:
    cd smart-mining-digital-twin
