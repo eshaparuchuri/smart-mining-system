@@ -24,11 +24,11 @@ This project also reflects strong problem-solving and system design capabilities
 - Integration with ThingsBoard for live IoT dashboard
 
 ## Architecture
-- **Backend:** Flask API for real-time data processing and prediction
-- **AI Model:** LSTM (TensorFlow/Keras) for anomaly detection and forecasting
-- **Frontend:** Streamlit dashboard for visualization and monitoring
-- **Data Layer:** Simulated real-time sensor data generation
-- **Integration:** ThingsBoard for external IoT dashboard visualization
+- Backend: Flask API for real-time data processing and prediction
+- AI Model: LSTM (TensorFlow/Keras) for anomaly detection and forecasting
+- Frontend: Streamlit dashboard for visualization and monitoring
+- Data Layer: Simulated real-time sensor data generation
+- Integration: ThingsBoard for external IoT dashboard visualization
 
 ## Machines Simulated
 - Excavator
